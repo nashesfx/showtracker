@@ -54,7 +54,7 @@ header {
     padding: 20px 0;
     border-bottom: 1px solid var(--border-color);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    position: relative; /* For theme switch positioning */
+    position: relative; 
 }
 
 header .container {
@@ -123,7 +123,6 @@ footer {
     color: var(--text-secondary);
 }
 
-/* --- LIGHT MODE VARIABLES --- */
 body.light-mode {
     --dark-bg: #F4F4F4;             
     --light-bg: #FFFFFF;           
@@ -133,7 +132,6 @@ body.light-mode {
 }
 
 #theme-switch {
-    /* Kept your existing switch styles */
     position: absolute;
     top: 20px;
     right: 20px;
@@ -159,11 +157,7 @@ body.light-mode {
     fill: var(--text-primary);
 }
 
-/* =========================================
-   NEW STYLES FOR CRUD & PROJECT LIST
-   ========================================= */
 
-/* 1. Form Styling */
 .form-container {
     background-color: var(--light-bg);
     padding: 25px;
@@ -178,7 +172,6 @@ body.light-mode {
     color: var(--primary-brand-color);
 }
 
-/* Inputs need to adapt to dark/light mode */
 input[type="text"], 
 textarea {
     background-color: var(--dark-bg);
@@ -196,7 +189,6 @@ input[type="text"]:focus {
     border-color: var(--primary-brand-color);
 }
 
-/* 2. Project List Grid */
 .project-list-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -230,7 +222,6 @@ input[type="text"]:focus {
     margin-bottom: 20px;
 }
 
-/* 3. Status Badges */
 .status-badge {
     display: inline-block;
     padding: 4px 10px;
@@ -259,7 +250,6 @@ input[type="text"]:focus {
     border: 1px solid var(--accent-color);
 }
 
-/* 4. Action Buttons (Update/Delete) */
 button {
     font-family: var(--body-font);
     font-weight: 600;

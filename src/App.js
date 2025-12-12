@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-// Importing Components
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
@@ -12,7 +11,6 @@ import Features from './components/Features';
 import About from './components/About';
 
 function App() {
-  // --- THEME LOGIC (Kept as is) ---
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
 
   useEffect(() => {
@@ -28,19 +26,13 @@ function App() {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   };
 
-  // --- BACKEND INTEGRATION START ---
-
-  // 1. STATE: Start with empty array, not hardcoded data
   const [projects, setProjects] = useState([]);
-  
-  // Form State for "Create" requirement
+
   const [newTitle, setNewTitle] = useState('');
   const [newDesc, setNewDesc] = useState('');
 
-  // API URL (Change to your Render URL when deploying)
   const API_URL = "http://localhost:5000/api/projects";
 
-  // 2. READ: Fetch data from Backend on mount
   useEffect(() => {
     fetchProjects();
   }, []);
@@ -57,7 +49,6 @@ function App() {
     }
   };
 
-  // 3. CREATE: Add a new project to Backend
   const addProject = async (e) => {
     e.preventDefault();
     if (!newTitle) return;
@@ -69,13 +60,13 @@ function App() {
         body: JSON.stringify({ 
           title: newTitle, 
           description: newDesc, 
-          status: "Want to Watch" // Default status
+          status: "Want to Watch"
         })
       });
       const data = await response.json();
       
       if (response.ok) {
-        setProjects([...projects, data]); // Update UI instantly
+        setProjects([...projects, data]);
         setNewTitle('');
         setNewDesc('');
       }
@@ -84,8 +75,6 @@ function App() {
     }
   };
 
-  // 4. UPDATE: Toggle Status in Backend
-  // Note: MongoDB uses '_id', not 'id'
   const toggleStatus = async (id, currentStatus) => {
     const nextStatus = currentStatus === 'Watching' ? 'Watched' 
                      : currentStatus === 'Watched' ? 'Want to Watch' 
@@ -108,7 +97,6 @@ function App() {
     }
   };
 
-  // 5. DELETE: Remove from Backend
   const deleteProject = async (id) => {
     if(!window.confirm("Are you sure you want to delete this?")) return;
 
@@ -136,8 +124,7 @@ function App() {
               <Route path="/" element={
                 <>
                   <Hero />
-                  
-                  {/* CREATE FORM (Required for Assignment) */}
+
                   <div className="form-container" style={{ margin: '20px 0', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
                     <h3>Add New Show</h3>
                     <form onSubmit={addProject} style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
@@ -161,8 +148,6 @@ function App() {
                     </form>
                   </div>
 
-                  {/* LIST VIEW */}
-                  {/* We pass 'projects' and the handlers down to the list */}
                   <ProjectList 
                     projects={projects} 
                     onStatusChange={toggleStatus} 
