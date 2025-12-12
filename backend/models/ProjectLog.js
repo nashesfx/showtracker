@@ -1,23 +1,10 @@
 const mongoose = require('mongoose');
 
-// Define the Schema
 const projectLogSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  status: {
-    type: String,
-    default: 'Pending'
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-});
+  title: { type: String, required: true },
+  description: { type: String },
+  status: { type: String, default: 'Want to Watch' },
+  image: { type: String }
+}, { timestamps: true });
 
 module.exports = mongoose.model('ProjectLog', projectLogSchema);
