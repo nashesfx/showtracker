@@ -31,7 +31,7 @@ function App() {
   const [newTitle, setNewTitle] = useState('');
   const [newDesc, setNewDesc] = useState('');
 
-  const API_URL = "http://localhost:5000/api/projects";
+  const API_URL = "https://showtracker-api.onrender.com";
 
   useEffect(() => {
     fetchProjects();
